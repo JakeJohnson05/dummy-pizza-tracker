@@ -262,10 +262,10 @@ body[data-state="arriving-soon"] .delivery-car {
 
 .progress-fill {
   height: 100%;
-  width: 25%;
+  width: var(--progress, 0%);
   border-radius: inherit;
   background: linear-gradient(90deg, var(--accent), var(--accent-soft));
-  transition: width 0.45s ease;
+  transition: width 0.45s ease, height 0.45s ease;
 }
 
 .steps {
@@ -496,24 +496,73 @@ code {
 
 @media (max-width: 640px) {
   .app {
+    width: min(720px, calc(100% - 24px));
     padding-top: 28px;
+    padding-bottom: 48px;
+  }
+
+  .tracker-card {
+    padding: 20px;
   }
 
   .order-meta {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .order-meta > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .pizza-scene {
+    height: 150px;
+    margin-bottom: 24px;
   }
 
   .control-row {
     flex-direction: column;
   }
 
+  .progress-track {
+    padding-left: 4px;
+  }
+
+  .progress-line {
+    top: 19px;
+    bottom: 19px;
+    left: 18px;
+    right: auto;
+    width: 4px;
+    height: auto;
+  }
+
+  .progress-fill {
+    width: 100%;
+    height: var(--progress, 0%);
+    background: linear-gradient(180deg, var(--accent), var(--accent-soft));
+    transition: height 0.45s ease;
+  }
+
   .steps {
-    overflow-x: auto;
-    grid-template-columns: repeat(8, 72px);
-    padding-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    padding: 10px 0;
+  }
+
+  .step-dot {
+    flex-shrink: 0;
   }
 
   .step-label {
-    font-size: 0.58rem;
+    font-size: 0.88rem;
+    line-height: 1.3;
   }
 }

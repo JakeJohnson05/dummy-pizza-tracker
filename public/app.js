@@ -76,7 +76,7 @@ function applyState(state, updatedAt) {
   statusLabel.textContent = state.shortLabel;
   statusMessage.textContent = state.message;
   etaEl.textContent = state.eta;
-  progressFill.style.width = `${state.progress}%`;
+  progressFill.style.setProperty("--progress", `${state.progress}%`);
   renderSteps(state.id);
   renderScene(state);
 
