@@ -188,7 +188,7 @@ async function init() {
     await refreshState();
     setInterval(() => {
       refreshState().catch(() => {});
-    }, 5000);
+    }, 10000);
   } catch (error) {
     statusMessage.textContent = error.message;
     showFeedback(error.message, "error");
