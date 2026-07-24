@@ -71,6 +71,8 @@ function renderScene(state) {
 }
 
 function applyState(state, updatedAt) {
+  document.title = `Pizza Tracker · ${state.shortLabel}`;
+
   statusLabel.textContent = state.shortLabel;
   statusMessage.textContent = state.message;
   etaEl.textContent = state.eta;
