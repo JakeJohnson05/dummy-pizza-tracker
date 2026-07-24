@@ -4,7 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { verifyUpdatePassword } from "./lib/auth.js";
 import {
-  buildOgImageSvg,
+  buildOgImagePng,
   getSharePayload,
   renderIndexHtml,
 } from "./lib/share.js";
@@ -29,12 +29,13 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/og-image.svg", async (req, res) => {
+app.get("/og-image.png", async (req, res) => {
   try {
     const { tracker } = await getSharePayload(req);
-    res.type("image/svg+xml");
+    const png = await buildOgImagePng(tracker);
+    res.type("image/png");
     res.set("Cache-Control", "public, max-age=60");
-    res.send(buildOgImageSvg(tracker));
+    res.send(png);
   } catch (error) {
     res.status(500).send("Could not render preview image.");
   }
