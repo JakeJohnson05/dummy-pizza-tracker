@@ -1,4 +1,6 @@
 let states = [];
+let syncedStateId = null;
+let selectDirty = false;
 
 const stateSelect = document.getElementById("state-select");
 const passwordInput = document.getElementById("password-input");
@@ -124,7 +126,10 @@ async function refreshState() {
 
   const data = await response.json();
   applyState(data.state, data.updatedAt);
-  stateSelect.value = data.stateId;
+  syncedStateId = data.stateId;
+  if (!selectDirty) {
+    stateSelect.value = data.stateId;
+  }
 }
 
 async function updateState() {
@@ -159,7 +164,9 @@ async function updateState() {
   }
 
   applyState(data.state, data.updatedAt);
+  syncedStateId = data.stateId;
   stateSelect.value = data.stateId;
+  selectDirty = false;
   showFeedback("Tracker updated.", "success");
 }
 
@@ -170,6 +177,7 @@ applyBtn.addEventListener("click", () => {
 stateSelect.addEventListener("change", () => {
   stateSelect.classList.remove("invalid");
   clearFeedback();
+  selectDirty = stateSelect.value !== syncedStateId;
 });
 
 passwordInput.addEventListener("input", clearFeedback);
