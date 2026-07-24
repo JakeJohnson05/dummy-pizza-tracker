@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizza Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">🍕</span>
+          <div>
+            <p class="eyebrow">Live Tracker</p>
+            <h1>Pizza Tracker</h1>
+          </div>
+        </div>
+        <p class="subtitle">
+          The scenic route: parents, obligatory snacks, small talk, and a
+          Midwestern goodbye.
+        </p>
+      </header>
+
+      <section class="card tracker-card">
+        <div class="order-meta">
+          <div>
+            <p class="label">Order #</p>
+            <p class="value">8472</p>
+          </div>
+          <div>
+            <p class="label">Est. arrival</p>
+            <p class="value" id="eta">~45 min</p>
+          </div>
+          <div>
+            <p class="label">Status</p>
+            <p class="value status-pill" id="status-label">To parents</p>
+          </div>
+        </div>
+
+        <div class="pizza-scene" aria-hidden="true">
+          <div class="scene-house" id="scene-house">🏡</div>
+          <div class="steam steam-left"></div>
+          <div class="steam steam-right"></div>
+          <div class="pizza" id="pizza-visual">
+            <span class="pizza-face">😋</span>
+          </div>
+          <div class="delivery-car" id="delivery-car">🚗</div>
+        </div>
+
+        <div class="progress-track" role="list" aria-label="Order progress">
+          <div class="progress-line">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <ol class="steps" id="steps"></ol>
+        </div>
+
+        <p class="status-message" id="status-message">
+          Loading tracker...
+        </p>
+        <p class="sync-note" id="sync-note"></p>
+      </section>
+
+      <section class="card control-card">
+        <label class="control-label" for="state-select">
+          Admin: update tracker state
+          <span class="hint">Requires password.</span>
+        </label>
+        <div class="control-row">
+          <input
+            id="password-input"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Update password"
+          />
+          <select id="state-select" disabled>
+            <option value="">Loading states...</option>
+          </select>
+          <button type="button" id="apply-btn">Update</button>
+        </div>
+        <p class="feedback" id="feedback" hidden></p>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
